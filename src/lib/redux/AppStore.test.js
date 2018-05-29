@@ -1,6 +1,5 @@
 import React from "react";
 import AppStore from "./AppStore"
-import { combineReducers } from 'redux';
 import { mount } from "enzyme";
 
 import { Provider, connect } from 'react-redux';
@@ -18,14 +17,14 @@ const actions = {
 
 const counterReducer = (state = {value: 0}, action) => {
     switch (action.type) {
-        case "INC": return({value: state.value + 1});
-        case "DEC": return({value: state.value - 1});
-        case "SET": return({value: action.payload});
+        case actions.types.INC: return({value: state.value + 1});
+        case actions.types.DEC: return({value: state.value - 1});
+        case actions.types.SET: return({value: action.payload});
         default: return(state);
     }
 }
 
-const reducers = combineReducers(
+const reducers = (
     {
         counter: counterReducer
     }
@@ -60,12 +59,22 @@ describe(
         );
 
         it(
+            "AppStore State to have the reducer",
+            () => {
+                const state = AppStore.GetState();
+                expect(state).toHaveProperty("counter")
+            }
+        )        
+
+        it(
             "Can SET value through the store",
             () => {
                 AppStore.Dispatch(actions.set(5));
                 expect(AppStore.GetState().counter.value).toEqual(5);
             }
         );
+
+
 
         it(
             "Can INC value through the store",
@@ -109,3 +118,4 @@ describe(
         const wrapper = mount(<AppStore.Provider><ConnectedCounter /></AppStore.Provider>);
     }
 )
+

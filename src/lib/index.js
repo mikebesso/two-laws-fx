@@ -5,6 +5,7 @@ import AppStore, {reducerLogger} from './redux';
 import { isUndefined } from "util";
 import _ from "lodash";
 
+import initializeFx from "./initializeFx";
 import UI from "./UI";
 
 
@@ -26,30 +27,7 @@ yup.match = function (key, message, func) {
 
 
 
-const handleHashChange = () => {
-    console.log("ROUTE CHANGE");
-    
-    AppStore.Dispatch(fx.HashRouter.Actions.handleHashChange())
-}
 
-const initializeFx = (actions, reducers, firebaseConfig) => {
-
-    const {Pages} = UI;
-    const routes = _.mapValues(Pages, (element) => element.pageRoute)
-
-    
-
-    new fx.AppStore(actions, reducers);
-
-    new fx.HashRouter(routes);
-    window.addEventListener('hashchange', handleHashChange, false);
-    
-    // Set the initial route and render the app
-    AppStore.Dispatch(fx.HashRouter.Actions.handleHashChange())
-
-    new fx.Firebase(firebaseConfig);
-
-}  
 
 const fx = {
     react: React,

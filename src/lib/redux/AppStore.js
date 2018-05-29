@@ -23,6 +23,9 @@ import hashRouterActions from '../hashRouter/actions/hashRouterActions';
 
 import firebaseReducers from "../firebase/reducers";
 
+import {AddPage} from "../UI/Pages";
+
+
 class AppStoreException {
     constructor(message) {
         this.message = message;
@@ -43,6 +46,7 @@ class AppStore {
         if (AppStore.store !== null){
             throw new AppStoreException("There can be only one AppStore");
         }
+
         
         AppStore.actions = {
             ...actions,
@@ -55,6 +59,7 @@ class AppStore {
                 ...firebaseReducers
             }
         );
+
 
         AppStore.store = AppStore.createStore(AppStore.reducers);
 
@@ -89,8 +94,7 @@ class AppStore {
     }    
 
     static GetState = () => AppStore.store.getState();
-
-    static Dispatch = (action) => AppStore.store.dispatch(action);
+    GetState = AppStore.GetState;
 
    
     static Provider = (props) => {
@@ -107,10 +111,7 @@ class AppStore {
     }
 
     
-
     static Connect = (mapStateToProps) => {
-
-
         return(
             (Component) => {
                 return(    
@@ -121,8 +122,17 @@ class AppStore {
                 )
             }
         ) 
-
     }
+
+    static ConnectPage = (page, mapStateToProps) => {
+        
+        const connectedPage = AppStore.Connect(mapStateToProps)(page);
+        AddPage(page, connectedPage);
+    }
+
+    static Dispatch = (action) => AppStore.store.dispatch(action);
+    Dispatch = AppStore.Dispatch;
+   
 
 }
 

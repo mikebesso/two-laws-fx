@@ -17,6 +17,8 @@ import * as Pages from "./Pages";
 
 import * as ShareButtons from "./ShareButtons";
 
+import * as User from "./User";
+
 
 
 const components = {
@@ -32,10 +34,10 @@ const components = {
     //BS,
     Loading,
     TagCloud,
-    ...Pages
+    ...Pages,
+    ...User
 };
 
 
-console.log(components)
 
 export default components;

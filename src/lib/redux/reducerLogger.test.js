@@ -6,7 +6,7 @@ function mockReducer(state, action){
     return(newState)
 }
 
-const reducer = reducerLogger(mockReducer);
+const logger = reducerLogger(mockReducer);
 
 describe(
     "reducerLogger",
@@ -14,7 +14,7 @@ describe(
          it(
             "returns a new state returned by a reducer",
             () => {
-                expect(reducer({}, "ACTION")).toEqual(newState)
+                expect(logger({}, "ACTION")).toEqual(newState)
             }
         )
 

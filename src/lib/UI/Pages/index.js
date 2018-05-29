@@ -1,5 +1,16 @@
 import _ from "lodash";
 
+import PageForgotPassword from "./PageForgotPassword";
+import PageSignIn from "./PageSignIn";
+import PageSignUp from "./PageSignUp";
+import PageSignOut from "./PageSignOut";
+import PageUser from "./PageUser";
+
+
+
+import PageUnderConstruction from "./PageUnderConstruction";
+import PageNotFound from "./PageNotFound";
+
 
 export let Pages = {};
 
@@ -11,37 +22,10 @@ export const AddPage = (pageClass, connectedPage) => {
         pageClass,  
         pageRoute: `GET ${pageClass.Route}`, 
         pageRequiresAuth: pageClass.RequiresAuthentication,
-        pageLocation: pageClass.Location
-
+        pageLocation: pageClass.Location,
+        Href: pageClass.Href
     };
 
 
 }
-
-/*
-export const RouteMap = () => {
-
-    const map = _.mapValues(PageList, (element) => element.pageComponent)
-    return (map)
- };
-
-export const Routes = () => {
-
-    const map = _.mapValues(PageList, (element) => element.pageRoute)
-    return (map) 
-
-} 
-
-export const PageClass = () => {
-    const map = _.mapValues(PageList, (element) => element.pageClass)
-    return (map) 
-}
-
-export const PageLocation = () => {
-    const map = _.mapValues(PageList, (element) => element.pageLocation)
-    return (map) 
-}
-*/
-
-
 

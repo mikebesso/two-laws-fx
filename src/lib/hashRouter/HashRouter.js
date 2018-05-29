@@ -3,7 +3,7 @@
 import RouterSwitch from "./RouterSwitch"
 import hashRouterReducers from "./reducers";
 //import hashRouterActionTypes from "./actions/actionTypes"
-//import hashRouterActions from "./actions/hashRouterActions"
+import hashRouterActions from "./actions/hashRouterActions"
 import Decoder from "./Decoder";
 
 
@@ -26,10 +26,10 @@ export default class HashRouter {
   static BuildHREF = (name, options = {}) => HashRouter.decoder.BuildHREF(name, options); 
   BuildHREF = HashRouter.BuildHREF; 
 
-  /*
+  
   static Actions = hashRouterActions;
   Actions = hashRouterActions;
-  */
+  
 
   static Reducers = hashRouterReducers;
   Reducers = hashRouterReducers;
